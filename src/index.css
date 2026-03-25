@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #0f1117;
+    color: #e8eaed;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid rgba(0, 230, 118, 0.6);
+    outline-offset: 2px;
+  }
+
+  /* Premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(26, 29, 39, 0.5);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3a3f50 0%, #2e3240 100%);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4a4f60 0%, #3a3f50 100%);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(0, 230, 118, 0.3);
+    color: #fff;
+  }
+}
+
+/* Premium Background */
+@layer components {
+  .premium-bg {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(
+        ellipse at 20% 20%,
+        rgba(0, 230, 118, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 80%,
+        rgba(0, 230, 118, 0.02) 0%,
+        transparent 50%
+      ),
+      linear-gradient(180deg, #0f1117 0%, #151820 100%);
+    background-size:
+      100% 100%,
+      100% 100%,
+      100% 100%;
+  }
+
+  .premium-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(46, 50, 64, 0.3) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Vignette effect */
+  .premium-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  .din-rail {
+    background: linear-gradient(
+      180deg,
+      #d4d4d4 0%,
+      #a8a8a8 20%,
+      #c0c0c0 50%,
+      #a8a8a8 80%,
+      #b8b8b8 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+
+  .din-slot {
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .din-slot:hover,
+  .din-slot.active {
+    border-color: rgba(0, 230, 118, 0.4);
+    background: rgba(0, 230, 118, 0.05);
+  }
+
+  .component-body {
+    background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 50%, #2e2e2e 100%);
+    border-radius: 4px;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .switch-handle {
+    background: linear-gradient(180deg, #666 0%, #555 50%, #444 100%);
+    border-radius: 2px;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .terminal-screw {
+    background: radial-gradient(circle at 35% 35%, #b8b8b8, #6a6a6a);
+    border-radius: 50%;
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .wire-energized {
+    filter: drop-shadow(0 0 4px rgba(0, 230, 118, 0.6));
+  }
+
+  .glass-panel {
+    background: rgba(26, 29, 39, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(46, 50, 64, 0.6);
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200;
+    background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+    color: #0f1117;
+    box-shadow: 0 2px 8px rgba(0, 230, 118, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(0, 230, 118, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .load-input {
+    @apply w-full px-2 py-1 rounded text-xs font-mono;
+    background: rgba(15, 17, 23, 0.8);
+    color: #e8eaed;
+    border: 1px solid rgba(46, 50, 64, 0.8);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .load-input:focus {
+    border-color: rgba(0, 230, 118, 0.5);
+    box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.1);
+  }
+
+  .load-input option {
+    background: #1a1d27;
+    color: #e8eaed;
+  }
+}
+
+/* Energy flow animation for SVG wires */
+.wire-flow-animated {
+  stroke-dasharray: 8 4;
+  animation: flowEnergy 1s linear infinite;
+}
+
+@keyframes flowEnergy {
+  0% {
+    stroke-dashoffset: 12;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Voltage drop gradient overlay */
+.voltage-drop-green {
+  stroke: #00e676;
+}
+.voltage-drop-yellow {
+  stroke: #ffd600;
+}
+.voltage-drop-red {
+  stroke: #ff1744;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
